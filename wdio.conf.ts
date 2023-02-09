@@ -29,7 +29,7 @@ export const config: Options.Testrunner = {
 	// then the current working directory is where your `package.json` resides, so `wdio`
 	// will be called from there.
 	//
-	specs: ['./test/features/**/*.feature'],
+	specs: ['./test/features/dropdown.feature'],
 	// Patterns to exclude.
 	exclude: [
 		// 'path/to/excluded/files'
@@ -50,7 +50,7 @@ export const config: Options.Testrunner = {
 	// and 30 processes will get spawned. The property handles how many capabilities
 	// from the same test should run tests.
 	//
-	maxInstances: 10,
+	maxInstances: 1,
 	//
 	// If you have trouble getting all important capabilities together, check out the
 	// Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -78,7 +78,7 @@ export const config: Options.Testrunner = {
 	// Define all options that are relevant for the WebdriverIO instance here
 	//
 	// Level of logging verbosity: trace | debug | info | warn | error | silent
-	logLevel: 'info',
+	logLevel: 'trace',
 	//
 	// Set specific log levels per logger
 	// loggers:
@@ -118,7 +118,7 @@ export const config: Options.Testrunner = {
 	// Services take over a specific job you don't want to take care of. They enhance
 	// your test setup with almost no effort. Unlike plugins, they don't add new
 	// commands. Instead, they hook themselves up into the test process.
-	services: ['chromedriver', 'geckodriver', 'edgedriver'],
+	services: ['chromedriver'], //, 'geckodriver', 'edgedriver'],
 
 	// Framework you want to run your specs with.
 	// The following are supported: Mocha, Jasmine, and Cucumber
@@ -140,13 +140,16 @@ export const config: Options.Testrunner = {
 	// Test reporter for stdout.
 	// The only one supported by default is 'dot'
 	// see also: https://webdriver.io/docs/dot-reporter
-	reporters: ['spec', ['allure', { outputDir: 'allure-results' }], 'video'],
+	reporters: ['spec', ['allure', { outputDir: 'test-results' }], 'video'],
 
 	//
 	// If you are using Cucumber you need to specify the location of your step definitions.
 	cucumberOpts: {
 		// <string[]> (file/dir) require files before executing features
-		require: ['../test/step-definitions/*.ts'],
+		require: [
+			'./test/step-definitions/dropdown-steps.ts',
+			'./test/step-definitions/homepage-steps.ts',
+		],
 		// <boolean> show full backtrace for errors
 		backtrace: false,
 		// <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)

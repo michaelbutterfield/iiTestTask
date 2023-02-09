@@ -24,7 +24,7 @@ export default class Services {
 
 	public async assertAccountsServicesVisibleAndEnabled() {
 		const accountsLinks = $$(await this.getLinksList('Accounts'));
-		accountsLinks.forEach(async function (link) {
+		await accountsLinks.forEach(async function (link) {
 			this.linkListBool = link.isClickable();
 			expect(this.linkListBool).to.be.true;
 		});
@@ -32,7 +32,7 @@ export default class Services {
 
 	public async assertInvestingServicesVisibleAndEnabled() {
 		const investingLinks = $$(await this.getLinksList('Investing'));
-		investingLinks.forEach(async function (link) {
+		await investingLinks.forEach(async function (link) {
 			this.linkListBool = link.isClickable();
 			expect(this.linkListBool).to.be.true;
 		});

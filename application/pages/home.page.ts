@@ -10,17 +10,24 @@ class HomePage extends Page {
 	 * Instantiate header only in the pages you need it
 	 * Stops misuse and confusion when e.g. two services on the page, two search boxes etc.
 	 */
-	public header = new Header();
+	public header: Header;
+
+	constructor() {
+		super();
+		this.header = new Header();
+	}
 
 	private get logIn() {
-		return $('//span[@class="ii-1r0s0ly" and text()="Log in"]');
+		return $("//span[@class='ii-1r0s0ly' and text()='Log in']");
 	}
 
 	private get chooseAnAccount() {
-		return $('//span[@title="Choose an account"]');
+		return $("//span[@title='Choose an account']");
 	}
 
 	public async assertOnHomePage() {
+		(await driver.isLoading()) === false;
+		await $("//button[@type='button' and text()='Accept']").click();
 		let visibleAndEnabled: Promise<boolean> = this.logIn.isClickable();
 		expect(visibleAndEnabled).to.be.true;
 		visibleAndEnabled = this.chooseAnAccount.isClickable();
