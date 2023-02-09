@@ -1,3 +1,9 @@
+# How to run:
+
+npm i
+
+npm run wdio
+
 # The thought behind it:
 
 The devs creating their own TDD unit tests is great, it ensures the code works and as long as I ensure the tests actually test then I don't need to write any functionality and duplicate the work. Tests main concern then is the behaviour of the application and the behaviour expected by end users. This influences the **BDD** (Behaviour Driven Development) approach taken.
